@@ -1,0 +1,13 @@
+Package: Romp
+Title: R OpenMP Examples
+Version: 0.1
+Depends: R (>= 3.0.0)
+Authors@R: person("Drew", "Schmidt", role = c("aut", "cre"), email =
+        "wrathematics@gmail.com")
+Description: TODO
+License: BSD 2-clause License + file LICENSE
+NeedsCompilation: yes
+LinkingTo: Rcpp
+Imports: Rcpp (>= 0.11.0)
+ByteCompile: yes
+Maintainer: Drew Schmidt <wrathematics@gmail.com>

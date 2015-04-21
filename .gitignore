@@ -1,0 +1,9 @@
+*.out
+*.o
+*.mod
+*.so
+*.log
+*.status
+*~
+*.swp
+
