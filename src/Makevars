@@ -1,0 +1,19 @@
+PKG_CXXFLAGS = $(SHLIB_OPENMP_CXXFLAGS)
+PKG_CFLAGS = $(SHLIB_OPENMP_CFLAGS)
+PKG_FFLAGS = $(SHLIB_OPENMP_FFLAGS)
+PKG_FCFLAGS = $(SHLIB_OPENMP_FCFLAGS)
+PKG_LIBS = $(SHLIB_OPENMP_CFLAGS) $(FLIBS) -lstdc++
+
+C_OBJS = examples_c.o num_procs.o examples_fortran_wrappers.o
+CXX_OBJS = RcppExports.o examples_rcpp.o
+FT_OBJS = examples_f77.o examples_f90.o
+
+OBJECTS = $(FT_OBJS) $(C_OBJS) $(CXX_OBJS)
+
+all: $(SHLIB)
+$(SHLIB): $(OBJECTS)
+
+
+clean:
+	@rm -rf *.o *.mod *.d *.rc *.so *.dylib *.dll *.a *.lib $(SHLIB) $(OBJECTS)
+
