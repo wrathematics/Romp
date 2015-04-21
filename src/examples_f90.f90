@@ -39,8 +39,7 @@ module examples_fortran
   subroutine f90_sweep(m, n, x, vec, ret) &
   bind(C, name="f90_sweep")
     integer(kind=c_int), intent(in), value :: m, n
-    real(kind=c_double), intent(inout) :: x(m, n)
-    real(kind=c_double), intent(in) :: vec(m)
+    real(kind=c_double), intent(in) :: x(m, n), vec(m)
     real(kind=c_double), intent(out) :: ret(m, n)
     integer :: i, j
     

@@ -29,6 +29,23 @@ SEXP f77_sum_wrap(SEXP x)
 }
 
 
+
+void f77swp_(int *m, int *n, const double *restrict x, const double *vec, double *ret);
+
+SEXP f77_sweep_wrap(SEXP x, SEXP vec)
+{
+  int m = nrows(x), n = ncols(x);
+  SEXP ret;
+  PROTECT(ret = allocMatrix(REALSXP, m, n));
+  
+  f77swp_(&m, &n, REAL(x), REAL(vec), REAL(ret));
+  
+  UNPROTECT(1);
+  return ret;
+}
+
+
+
 // Fortran 2003
 
 void f90_hello();
@@ -57,7 +74,7 @@ SEXP f90_sum_wrap(SEXP x)
 
 
 
-void f90_sweep(const int m, const int n, double *restrict x, const double *vec, double *ret);
+void f90_sweep(const int m, const int n, const double *restrict x, const double *vec, double *ret);
 
 SEXP f90_sweep_wrap(SEXP x, SEXP vec)
 {

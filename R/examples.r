@@ -43,6 +43,15 @@ f77_sum <- function(x)
 }
 
 #' @export
+f77_sweep <- function(x, vec)
+{
+  if (length(vec) != nrow(x))
+    stop("invalid vec length")
+  
+  .Call("f77_sweep_wrap", x, vec, PACKAGE="Romp")
+}
+
+#' @export
 f90_hello <- function() invisible(.Call("f90_hello_wrap", PACKAGE="Romp"))
 
 #' @export
