@@ -33,7 +33,7 @@ implementation reasons.
 The benchmarks are located at `Romp/inst/benchmarks/` of the source
 tree.  All tests were performed using:
 
-* R 3.1.2
+* R 3.2.0
 * gcc 4.9.1
 * 4 cores of a Core i5-2500K CPU @ 3.30GHz
 
@@ -42,22 +42,22 @@ tree.  All tests were performed using:
 
 ```
          test replications elapsed relative
-2    c_sum(x)          100   1.173    1.000
-4  f77_sum(x)          100   1.174    1.001
-5  f90_sum(x)          100   1.176    1.003
-3 rcpp_sum(x)          100   1.185    1.010
-1      sum(x)          100   2.630    2.242
+5  f90_sum(x)          100   1.178    1.000
+4  f77_sum(x)          100   1.179    1.001
+2    c_sum(x)          100   1.186    1.007
+3 rcpp_sum(x)          100   1.196    1.015
+1      sum(x)          100   2.605    2.211
 ```
 
 #### Sweep
 
 ```
                 test replications elapsed relative
-2    c_sweep(x, vec)          100   4.039    1.000
-4  f77_sweep(x, vec)          100   4.880    1.208
-5  f90_sweep(x, vec)          100   4.951    1.226
-3 rcpp_sweep(x, vec)          100   8.448    2.092
-1    r_sweep(x, vec)          100  43.916   10.873
+4  f77_sweep(x, vec)          100   5.242    1.000
+5  f90_sweep(x, vec)          100   5.315    1.014
+2    c_sweep(x, vec)          100   5.354    1.021
+3 rcpp_sweep(x, vec)          100  14.966    2.855
+1    r_sweep(x, vec)          100  52.330    9.983
 ```
 
 
