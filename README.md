@@ -3,7 +3,61 @@
 Basic examples using OpenMP with R, for C, C++, F77, and Fortran 2003.
 
 
-## Structure
+## Examples
+
+There are 3 examples, using each of C, C++ (Rcpp), F77, and F2003.
+
+#### Hello World
+
+A basic OpenMP hello world.  Note that the order of thread printing
+is not guaranteed.
+
+#### Sum
+
+Sums up a numeric vector.
+
+#### Sweep
+
+Sweeps from a numeric matrix a numeric vector of the same length
+as the number of rows of that matrix.  Equivalent to calling
+`sweep(x, STATS=vec, MARGIN=1, FUN="-")` in R.
+
+
+## Benchmarks
+
+I wouldn't take the numbers here too seriously, especially for the
+sum example, where they appear to be statistically identical.
+The languages separate on the sweep example, though possibly for
+implementation reasons.
+
+The benchmarks are located at `Romp/inst/benchmarks/` of the source
+tree.
+
+#### Sum
+
+```
+         test replications elapsed relative
+2    c_sum(x)          100   1.173    1.000
+4  f77_sum(x)          100   1.174    1.001
+5  f90_sum(x)          100   1.176    1.003
+3 rcpp_sum(x)          100   1.185    1.010
+1      sum(x)          100   2.630    2.242
+```
+
+#### Sweep
+
+```
+                test replications elapsed relative
+2    c_sweep(x, vec)          100   4.039    1.000
+4  f77_sweep(x, vec)          100   4.880    1.208
+5  f90_sweep(x, vec)          100   4.951    1.226
+3 rcpp_sweep(x, vec)          100   8.448    2.092
+1    r_sweep(x, vec)          100  43.916   10.873
+```
+
+
+
+## Integration with R
 
 If you are unfamiliar with integrating C, C++, or Fortran into R,
 then the following will hopefully be of use to you.
