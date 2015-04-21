@@ -4,7 +4,8 @@ Version: 0.1
 Depends: R (>= 3.0.0)
 Authors@R: person("Drew", "Schmidt", role = c("aut", "cre"), email =
         "wrathematics@gmail.com")
-Description: TODO
+Description: A collection of examples utilizing OpenMP with R bindings.
+        Implementations are given in C, C++ (Rcpp), F77, and F2003.
 License: BSD 2-clause License + file LICENSE
 NeedsCompilation: yes
 LinkingTo: Rcpp
