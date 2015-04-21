@@ -24,10 +24,11 @@ SEXP c_sum(SEXP x)
 {
   SEXP ret;
   double sum = 0;
+  double *ptx = REAL(x);
   
   #pragma omp parallel for default(shared) reduction(+:sum)
   for (int i=0; i<LENGTH(x); i++)
-    sum += REAL(x)[i];
+    sum += *(ptx+i);
   
   PROTECT(ret = allocVector(REALSXP, 1));
   REAL(ret)[0] = sum;
@@ -42,12 +43,13 @@ SEXP c_sweep(SEXP x, SEXP vec)
   const int m = nrows(x), n = ncols(x);
   SEXP ret;
   PROTECT(ret = allocMatrix(REALSXP, m, n));
+  double *ptx = REAL(ret), *ptvec = REAL(vec), *ptret = REAL(ret);
   
   #pragma omp parallel for default(shared)
   for (int j=0; j<n; j++)
   {
     for (int i=0; i<m; i++)
-      REAL(ret)[i + m*j] = REAL(x)[i + m*j] - REAL(vec)[i];
+      *(ptret + (i + m*j)) = *(ptx + (i + m*j)) - *(ptvec + i);
   }
   
   UNPROTECT(1);

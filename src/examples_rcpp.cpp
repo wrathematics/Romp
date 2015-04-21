@@ -1,6 +1,7 @@
 #include <omp.h>
 #include <Rcpp.h>
 
+
 // [[Rcpp::export]]
 void rcpp_hello_()
 {
