@@ -5,5 +5,5 @@
 #' \code{parallel::detectCores()}.
 #' 
 #' @export
-num.procs <- function() .Call("R_num_procs")
+num.procs <- function() .Call("R_num_procs", PACKAGE="Romp")
 

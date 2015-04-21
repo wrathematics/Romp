@@ -4,7 +4,7 @@ PKG_FFLAGS = $(SHLIB_OPENMP_FFLAGS)
 PKG_FCFLAGS = $(SHLIB_OPENMP_FCFLAGS)
 PKG_LIBS = $(SHLIB_OPENMP_CFLAGS) $(FLIBS) -lstdc++
 
-C_OBJS = examples_c.o num_procs.o examples_fortran_wrappers.o
+C_OBJS = examples_c.o examples_fortran_wrappers.o utils.o
 CXX_OBJS = RcppExports.o examples_rcpp.o
 FT_OBJS = examples_f77.o examples_f90.o
 
