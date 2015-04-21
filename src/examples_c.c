@@ -43,7 +43,7 @@ SEXP c_sweep(SEXP x, SEXP vec)
   const int m = nrows(x), n = ncols(x);
   SEXP ret;
   PROTECT(ret = allocMatrix(REALSXP, m, n));
-  double *ptx = REAL(ret), *ptvec = REAL(vec), *ptret = REAL(ret);
+  double *ptx = REAL(x), *ptvec = REAL(vec), *ptret = REAL(ret);
   
   #pragma omp parallel for default(shared)
   for (int j=0; j<n; j++)
@@ -55,3 +55,4 @@ SEXP c_sweep(SEXP x, SEXP vec)
   UNPROTECT(1);
   return ret;
 }
+
