@@ -31,7 +31,12 @@ The languages separate on the sweep example, though possibly for
 implementation reasons.
 
 The benchmarks are located at `Romp/inst/benchmarks/` of the source
-tree.
+tree.  All tests were performed using:
+
+* R 3.1.2
+* gcc 4.9.1
+* 4 cores of a Core i5-2500K CPU @ 3.30GHz
+
 
 #### Sum
 
