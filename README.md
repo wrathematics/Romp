@@ -18,7 +18,7 @@ Sums up a numeric vector.
 
 #### Sweep
 
-Sweeps from a numeric matrix a numeric vector of the same length
+Sweeps a numeric vector from a numeric matrix of the same length
 as the number of rows of that matrix.  Equivalent to calling
 `sweep(x, STATS=vec, MARGIN=1, FUN="-")` in R.
 
