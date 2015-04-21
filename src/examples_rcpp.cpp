@@ -32,9 +32,17 @@ double rcpp_sum_(Rcpp::NumericVector x)
 
 
 // [[Rcpp::export]]
-Rcpp::NumericMatrix rcpp_sweep_(Rcpp::NumericMatrix x)
+Rcpp::NumericMatrix rcpp_sweep_(Rcpp::NumericMatrix x, Rcpp::NumericVector vec)
 {
-  Rcpp::NumericMatrix ret(x);
+  Rcpp::NumericMatrix ret(x.nrow(), x.ncol());
+  
+  #pragma omp parallel for default(shared)
+  for (int j=0; j<x.ncol(); j++)
+  {
+    #pragma omp simd
+    for (int i=0; i<x.nrow(); i++)
+      ret(i, j) = x(i, j) - vec(i);
+  }
   
   return ret;
 }

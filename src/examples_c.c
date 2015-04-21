@@ -1,7 +1,6 @@
 #include <omp.h>
 #include <R.h>
 #include <Rinternals.h>
-#include <stdlib.h>
 
 
 SEXP c_hello()
@@ -38,13 +37,19 @@ SEXP c_sum(SEXP x)
 
 
 
-SEXP c_sweep(SEXP x)
+SEXP c_sweep(SEXP x, SEXP vec)
 {
   const int m = nrows(x), n = ncols(x);
   SEXP ret;
   PROTECT(ret = allocMatrix(REALSXP, m, n));
   
-  memcpy(REAL(ret), REAL(x), m*n*sizeof(double));
+  #pragma omp parallel for default(shared)
+  for (int j=0; j<n; j++)
+  {
+    for (int i=0; i<m; i++)
+      REAL(ret)[i + m*j] = REAL(x)[i + m*j] - REAL(vec)[i];
+  }
   
+  UNPROTECT(1);
   return ret;
 }

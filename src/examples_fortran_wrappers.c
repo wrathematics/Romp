@@ -14,7 +14,7 @@ SEXP f77_hello_wrap()
 
 
 
-void f77sum_(double *x, int *xlen, double *sum);
+void f77sum_(double *restrict x, int *restrict xlen, double *restrict sum);
 
 SEXP f77_sum_wrap(SEXP x)
 {
@@ -42,7 +42,7 @@ SEXP f90_hello_wrap()
 
 
 
-double f90_sum(double *x, int xlen);
+double f90_sum(double *restrict x, int xlen);
 
 SEXP f90_sum_wrap(SEXP x)
 {
@@ -50,6 +50,22 @@ SEXP f90_sum_wrap(SEXP x)
   PROTECT(ret = allocVector(REALSXP, 1));
   
   REAL(ret)[0] = f90_sum(REAL(x), LENGTH(x));
+  
+  UNPROTECT(1);
+  return ret;
+}
+
+
+
+void f90_sweep(const int m, const int n, double *restrict x, const double *vec, double *ret);
+
+SEXP f90_sweep_wrap(SEXP x, SEXP vec)
+{
+  const int m = nrows(x), n = ncols(x);
+  SEXP ret;
+  PROTECT(ret = allocMatrix(REALSXP, m, n));
+  
+  f90_sweep(m, n, REAL(x), REAL(vec), REAL(ret));
   
   UNPROTECT(1);
   return ret;

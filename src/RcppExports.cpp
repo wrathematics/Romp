@@ -26,13 +26,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // rcpp_sweep_
-Rcpp::NumericMatrix rcpp_sweep_(Rcpp::NumericMatrix x);
-RcppExport SEXP Romp_rcpp_sweep_(SEXP xSEXP) {
+Rcpp::NumericMatrix rcpp_sweep_(Rcpp::NumericMatrix x, Rcpp::NumericVector vec);
+RcppExport SEXP Romp_rcpp_sweep_(SEXP xSEXP, SEXP vecSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
     Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type x(xSEXP);
-    __result = Rcpp::wrap(rcpp_sweep_(x));
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type vec(vecSEXP);
+    __result = Rcpp::wrap(rcpp_sweep_(x, vec));
     return __result;
 END_RCPP
 }

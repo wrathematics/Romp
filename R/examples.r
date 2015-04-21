@@ -12,6 +12,20 @@ c_sum <- function(x)
   .Call("c_sum", x, PACKAGE="Romp")
 }
 
+#' @export
+c_sweep <- function(x, vec)
+{
+  if (!is.double(x))
+    storage.mode(x) <- "double"
+  if (!is.double(vec))
+    storage.mode(vec) <- "double"
+  
+  if (length(vec) != nrow(x))
+    stop("invalid vec length")
+  
+  .Call("c_sweep", x, vec, PACKAGE="Romp")
+}
+
 
 
 ### Fortran
@@ -40,6 +54,15 @@ f90_sum <- function(x)
   .Call("f90_sum_wrap", x, PACKAGE="Romp")
 }
 
+#' @export
+f90_sweep <- function(x, vec)
+{
+  if (length(vec) != nrow(x))
+    stop("invalid vec length")
+  
+  .Call("f90_sweep_wrap", x, vec, PACKAGE="Romp")
+}
+
 
 
 ### Rcpp
@@ -49,3 +72,12 @@ rcpp_hello <- rcpp_hello_
 
 #' @export
 rcpp_sum <- rcpp_sum_
+
+#' @export
+rcpp_sweep <- function(x, vec)
+{
+  if (length(vec) != nrow(x))
+    stop("invalid vec length")
+  
+  rcpp_sweep_(x, vec)
+}
