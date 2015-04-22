@@ -110,7 +110,5 @@ live in modules without the use of the F2003 `iso_c_binding` module
 (which has been supported by every compiler for ages).  This package
 gives some nice examples of how to use module code.
 
-A final note about F90+ in particular, is that much of the advice
-in Writing R Extensions ranges from terrible to wildly inaccurate.
-Ignore what they have to say.
-
+A final note about F90+ in particular, is that some of the advice
+in Writing R Extensions is not always entirely accurate.  
