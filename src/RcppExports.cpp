@@ -37,3 +37,14 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
+// rcpp_primesbelow_
+int rcpp_primesbelow_(const int n);
+RcppExport SEXP Romp_rcpp_primesbelow_(SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< const int >::type n(nSEXP);
+    __result = Rcpp::wrap(rcpp_primesbelow_(n));
+    return __result;
+END_RCPP
+}

@@ -46,6 +46,20 @@ SEXP f77_sweep_wrap(SEXP x, SEXP vec)
 
 
 
+void f77pb_(int *n, int *nprimes);
+
+SEXP f77_primesbelow_wrap(SEXP n)
+{
+  SEXP nprimes = PROTECT(allocVector(INTSXP, 1));
+  
+  f77pb_(INTEGER(n), INTEGER(nprimes));
+  
+  UNPROTECT(1);
+  return nprimes;
+}
+
+
+
 // Fortran 2003
 
 void f90_hello();
@@ -87,3 +101,18 @@ SEXP f90_sweep_wrap(SEXP x, SEXP vec)
   UNPROTECT(1);
   return ret;
 }
+
+
+
+int f90_primesbelow(const int n);
+
+SEXP f90_primesbelow_wrap(SEXP n)
+{
+  SEXP nprimes = PROTECT(allocVector(INTSXP, 1));
+  
+  INTEGER(nprimes)[0] = f90_primesbelow(INTEGER(n)[0]);
+  
+  UNPROTECT(1);
+  return nprimes;
+}
+

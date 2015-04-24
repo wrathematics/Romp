@@ -52,4 +52,28 @@ module examples_fortran
     !$omp end parallel do
   end subroutine
   
+  
+  function f90_primesbelow(n) result(nprimes) &
+  bind(C, name="f90_primesbelow")
+    integer(kind=c_int) :: nprimes
+    integer(kind=c_int), intent(in), value :: n
+    integer i, j, isprime
+    
+    nprimes = 1
+    
+    !$omp parallel do private(i, j, isprime) reduction(+:nprimes)
+    do i=3, n, 2
+      isprime = 1
+      
+      do j=3, i-1, 2
+        if (mod(i, j) == 0) then
+          isprime = 0
+          exit
+        end if
+      end do
+      
+      if (isprime == 1) nprimes = nprimes+1
+    end do
+  end function
+  
 end module

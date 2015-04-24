@@ -13,6 +13,9 @@
 #' the number of columns of the matrix.  This is equivalent to a
 #' special case of \code{sweep(x, STATS=vec, MARGIN=1, FUN="-")}.
 #' 
+#' The \code{_primesbelow()} functions compute the number of prime
+#' integers below a given (positive) integer.
+#' 
 #' @param x
 #' A numeric vector for the sum example, and a numeric matrix for
 #' the sweep example.
@@ -55,6 +58,13 @@ c_sweep <- function(x, vec)
   .Call("c_sweep", x, vec, PACKAGE="Romp")
 }
 
+#' @rdname ompexamples
+#' @export
+c_primesbelow <- function(n)
+{
+  .Call("c_primesbelow", as.integer(n), PACKAGE="Romp")
+}
+
 
 
 ### Fortran
@@ -85,6 +95,13 @@ f77_sweep <- function(x, vec)
 
 #' @rdname ompexamples
 #' @export
+f77_primesbelow <- function(n)
+{
+  .Call("f77_primesbelow_wrap", as.integer(n), PACKAGE="Romp")
+}
+
+#' @rdname ompexamples
+#' @export
 f90_hello <- function() invisible(.Call("f90_hello_wrap", PACKAGE="Romp"))
 
 #' @rdname ompexamples
@@ -105,6 +122,13 @@ f90_sweep <- function(x, vec)
     stop("invalid vec length")
   
   .Call("f90_sweep_wrap", x, vec, PACKAGE="Romp")
+}
+
+#' @rdname ompexamples
+#' @export
+f90_primesbelow <- function(n)
+{
+  .Call("f90_primesbelow_wrap", as.integer(n), PACKAGE="Romp")
 }
 
 
@@ -128,3 +152,7 @@ rcpp_sweep <- function(x, vec)
   
   rcpp_sweep_(x, vec)
 }
+
+#' @rdname ompexamples
+#' @export
+rcpp_primesbelow <- rcpp_primesbelow_

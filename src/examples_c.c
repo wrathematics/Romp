@@ -56,3 +56,34 @@ SEXP c_sweep(SEXP x, SEXP vec)
   return ret;
 }
 
+
+
+SEXP c_primesbelow(SEXP n_)
+{
+  const int n = INTEGER(n_)[0];
+  int isprime;
+  int nprimes = 1;
+  
+  #pragma omp parallel for private(isprime) reduction(+:nprimes)
+  for (int i=3; i<=n; i+=2)
+  {
+    isprime = 1;
+    
+    for (int j=3; j<i; j+=2)
+    {
+      if (i%j == 0)
+      {
+        isprime = 0;
+        break;
+      }
+    }
+    
+    if (isprime) nprimes++;
+  }
+  
+  SEXP ret = PROTECT(allocVector(INTSXP, 1));
+  INTEGER(ret)[0] = nprimes;
+  UNPROTECT(1);
+  return ret;
+}
+

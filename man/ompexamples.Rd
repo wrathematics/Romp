@@ -2,16 +2,20 @@
 % Please edit documentation in R/examples.r
 \name{ompexamples}
 \alias{c_hello}
+\alias{c_primesbelow}
 \alias{c_sum}
 \alias{c_sweep}
 \alias{f77_hello}
+\alias{f77_primesbelow}
 \alias{f77_sum}
 \alias{f77_sweep}
 \alias{f90_hello}
+\alias{f90_primesbelow}
 \alias{f90_sum}
 \alias{f90_sweep}
 \alias{ompexamples}
 \alias{rcpp_hello}
+\alias{rcpp_primesbelow}
 \alias{rcpp_sum}
 \alias{rcpp_sweep}
 \title{OpenMP Examples}
@@ -22,11 +26,15 @@ c_sum(x)
 
 c_sweep(x, vec)
 
+c_primesbelow(n)
+
 f77_hello()
 
 f77_sum(x)
 
 f77_sweep(x, vec)
+
+f77_primesbelow(n)
 
 f90_hello()
 
@@ -34,11 +42,15 @@ f90_sum(x)
 
 f90_sweep(x, vec)
 
+f90_primesbelow(n)
+
 rcpp_hello()
 
 rcpp_sum(x)
 
 rcpp_sweep(x, vec)
+
+rcpp_primesbelow(n)
 }
 \arguments{
 \item{x}{A numeric vector for the sum example, and a numeric matrix for

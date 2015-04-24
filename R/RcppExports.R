@@ -13,3 +13,7 @@ rcpp_sweep_ <- function(x, vec) {
     .Call('Romp_rcpp_sweep_', PACKAGE = 'Romp', x, vec)
 }
 
+rcpp_primesbelow_ <- function(n) {
+    .Call('Romp_rcpp_primesbelow_', PACKAGE = 'Romp', n)
+}
+

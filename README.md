@@ -60,6 +60,15 @@ tree.  All tests were performed using:
 1    r_sweep(x, vec)          100  52.330    9.983
 ```
 
+#### Primes Below an Integer
+
+```
+                 test replications elapsed relative
+1    c_primesbelow(n)          100   9.054    1.000
+3  f90_primesbelow(n)          100   9.629    1.064
+2  f77_primesbelow(n)          100   9.656    1.066
+4 rcpp_primesbelow(n)          100  10.391    1.148
+```
 
 
 ## Integration with R
