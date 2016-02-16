@@ -21,6 +21,9 @@
 #' the sweep example.
 #' @param vec
 #' A numeric vector the same length as the number of rows as x.
+#' @param n
+#' The number from the "primes below" example, where the function
+#' returns the total number of primes below \code{n}.
 #' 
 #' @name ompexamples
 #' @rdname ompexamples

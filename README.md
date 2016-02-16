@@ -1,5 +1,11 @@
 # Romp
 
+* **Version:** 0.1
+* **URL**: https://github.com/wrathematics/Romp
+* **License:** [![License](http://img.shields.io/badge/license-BSD%202--Clause-orange.svg?style=flat)](http://opensource.org/licenses/BSD-2-Clause)
+* **Author:** Drew Schmidt
+
+
 Basic examples using OpenMP with R, for C, C++, F77, and Fortran 2003.
 
 
@@ -85,7 +91,8 @@ performance loss compared to the `.Call()` interface.
 
 If you are interested in some simplifications of R's C interface
 but don't want to jump to C++, you might consider taking a look
-at [RNACI](https://github.com/wrathematics/RNACI).
+at the C project [RNACI](https://github.com/wrathematics/RNACI),
+which is also available as a header-only library.
 
 #### C++
 
@@ -120,4 +127,5 @@ live in modules without the use of the F2003 `iso_c_binding` module
 gives some nice examples of how to use module code.
 
 A final note about F90+ in particular, is that some of the advice
-in Writing R Extensions is not always entirely accurate.  
+in Writing R Extensions is not always entirely accurate.
+
